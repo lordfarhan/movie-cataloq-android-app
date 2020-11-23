@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Movie Cataloq</string>
+    <string name="movies">Movies</string>
+    <string name="tv_shows">TV Shows</string>
+    <string name="settings">Settings</string>
+
+    <string name="movie">Movie</string>
+    <string name="tv_show">TV Show</string>
+
+    <string name="movie_cover">Cover</string>
+    <string name="movie_title">Title</string>
+    <string name="movie_rating">Rating</string>
+    <string name="movie_overview">Overview</string>
+    <string name="movie_reviewers">Reviewers</string>
+</resources>
