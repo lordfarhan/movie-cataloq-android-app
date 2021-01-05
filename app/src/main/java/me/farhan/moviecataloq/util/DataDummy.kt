@@ -134,7 +134,7 @@ class DataDummy {
             return movies
         }
 
-        fun getMovieById(id: Int): Movie {
+        fun getMovieById(id: Long): Movie {
             var movie: Movie? = null
             getMovies().forEach {
                 if (it.id == id) movie = it
@@ -267,7 +267,7 @@ class DataDummy {
             return tvShows.reversed()
         }
 
-        fun getTvShowById(id: Int): TvShow {
+        fun getTvShowById(id: Long): TvShow {
             var tvShow: TvShow? = null
             getTvShows().forEach {
                 if (it.id == id) tvShow = it

@@ -3,9 +3,10 @@ package me.farhan.moviecataloq.ui.tvshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import me.farhan.moviecataloq.data.model.TvShow
 import me.farhan.moviecataloq.data.repository.MovieCataloqRepository
-import me.farhan.moviecataloq.util.DataDummy
+import me.farhan.moviecataloq.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -24,36 +25,41 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class TvShowViewModelTest {
 
-    private lateinit var viewModel: TvShowViewModel
+  private lateinit var viewModel: TvShowViewModel
 
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
+  @get:Rule
+  var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Mock
-    private lateinit var repository: MovieCataloqRepository
+  @Mock
+  private lateinit var repository: MovieCataloqRepository
 
-    @Mock
-    private lateinit var observer: Observer<List<TvShow>>
+  @Mock
+  private lateinit var observer: Observer<Resource<PagedList<TvShow>>>
 
-    @Before
-    fun setUp() {
-        viewModel = TvShowViewModel(repository)
-    }
+  @Mock
+  private lateinit var pagedList: PagedList<TvShow>
 
-    @Test
-    fun getTvShows() {
-        val dummyTvShows = DataDummy.getTvShows()
-        val tvShows = MutableLiveData<List<TvShow>>()
-        tvShows.value = dummyTvShows
+  @Before
+  fun setUp() {
+    viewModel = TvShowViewModel(repository)
+  }
 
-        `when`(repository.getTvShows()).thenReturn(tvShows)
-        val entities = viewModel.getTvShows().value
-        verify(repository).getTvShows()
+  @Test
+  fun getTvShows() {
+    val dummyTvShows = Resource.success(pagedList)
+    `when`(dummyTvShows.data?.size).thenReturn(10)
 
-        assertNotNull(entities)
-        assertEquals(10, entities?.size)
+    val tvShows = MutableLiveData<Resource<PagedList<TvShow>>>()
+    tvShows.value = dummyTvShows
 
-        viewModel.getTvShows().observeForever(observer)
-        verify(observer).onChanged(dummyTvShows)
-    }
+    `when`(repository.getTvShows()).thenReturn(tvShows)
+    val entities = viewModel.getTvShows().value?.data
+    verify(repository).getTvShows()
+
+    assertNotNull(entities)
+    assertEquals(10, entities?.size)
+
+    viewModel.getTvShows().observeForever(observer)
+    verify(observer).onChanged(dummyTvShows)
+  }
 }

@@ -1,15 +1,41 @@
 <resources>
-    <string name="app_name">Movie Cataloq</string>
-    <string name="movies">Movies</string>
-    <string name="tv_shows">TV Shows</string>
-    <string name="settings">Settings</string>
+  <string name="app_name">Movie Cataloq</string>
+  <string name="movies">Movies</string>
+  <string name="tv_shows">TV Shows</string>
+  <string name="settings">Settings</string>
+  <string name="favorites">Favorites</string>
 
-    <string name="movie">Movie</string>
-    <string name="tv_show">TV Show</string>
+  <string name="movie">Movie</string>
+  <string name="tv_show">TV Show</string>
+  <string name="favorite_movie">Favorite Movie</string>
+  <string name="favorite_tv_show">Favorite TV Show</string>
 
-    <string name="movie_cover">Cover</string>
-    <string name="movie_title">Title</string>
-    <string name="movie_rating">Rating</string>
-    <string name="movie_overview">Overview</string>
-    <string name="movie_reviewers">Reviewers</string>
+  <string name="movie_cover">Cover</string>
+  <string name="movie_title">Title</string>
+  <string name="movie_rating">Rating</string>
+  <string name="movie_release_date">Release Date</string>
+  <string name="movie_status">Status</string>
+  <string name="movie_overview">Overview</string>
+  <string name="movie_reviewers">Reviewers</string>
+
+  <string name="tv_show_first_air_date">First Air Date</string>
+
+  <string name="january">January</string>
+  <string name="february">February</string>
+  <string name="march">March</string>
+  <string name="april">April</string>
+  <string name="may">May</string>
+  <string name="june">June</string>
+  <string name="july">July</string>
+  <string name="august">August</string>
+  <string name="september">September</string>
+  <string name="october">October</string>
+  <string name="november">November</string>
+  <string name="december">December</string>
+
+  <string name="action_back">Back</string>
+  <string name="action_favorite">Add to Favorite</string>
+
+  <string name="dialog_error">Error</string>
+  <string name="dialog_success">Success</string>
 </resources>

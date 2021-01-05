@@ -25,6 +25,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.landing.LandingActivity" />
         </activity>
+      <activity android:name=".ui.favorite.FavoriteActivity" />
     </application>
 
 </manifest>

@@ -3,9 +3,10 @@ package me.farhan.moviecataloq.ui.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import me.farhan.moviecataloq.data.model.Movie
 import me.farhan.moviecataloq.data.repository.MovieCataloqRepository
-import me.farhan.moviecataloq.util.DataDummy
+import me.farhan.moviecataloq.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -24,36 +25,41 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MovieViewModelTest {
 
-    private lateinit var viewModel: MovieViewModel
+  private lateinit var viewModel: MovieViewModel
 
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
+  @get:Rule
+  var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Mock
-    private lateinit var repository: MovieCataloqRepository
+  @Mock
+  private lateinit var repository: MovieCataloqRepository
 
-    @Mock
-    private lateinit var observer: Observer<List<Movie>>
+  @Mock
+  private lateinit var observer: Observer<Resource<PagedList<Movie>>>
 
-    @Before
-    fun setUp() {
-        viewModel = MovieViewModel(repository)
-    }
+  @Mock
+  private lateinit var pagedList: PagedList<Movie>
 
-    @Test
-    fun getMovies() {
-        val dummyMovies = DataDummy.getMovies()
-        val movies = MutableLiveData<List<Movie>>()
-        movies.value = dummyMovies
+  @Before
+  fun setUp() {
+    viewModel = MovieViewModel(repository)
+  }
 
-        `when`(repository.getMovies()).thenReturn(movies)
-        val entities = viewModel.getMovies().value
-        verify(repository).getMovies()
+  @Test
+  fun getMovies() {
+    val dummyMovies = Resource.success(pagedList)
+    `when`(dummyMovies.data?.size).thenReturn(10)
 
-        assertNotNull(entities)
-        assertEquals(10, entities?.size)
+    val movies = MutableLiveData<Resource<PagedList<Movie>>>()
+    movies.value = dummyMovies
 
-        viewModel.getMovies().observeForever(observer)
-        verify(observer).onChanged(dummyMovies)
-    }
+    `when`(repository.getMovies()).thenReturn(movies)
+    val entities = viewModel.getMovies().value?.data
+    verify(repository).getMovies()
+
+    assertNotNull(entities)
+    assertEquals(10, entities?.size)
+
+    viewModel.getMovies().observeForever(observer)
+    verify(observer).onChanged(dummyMovies)
+  }
 }
