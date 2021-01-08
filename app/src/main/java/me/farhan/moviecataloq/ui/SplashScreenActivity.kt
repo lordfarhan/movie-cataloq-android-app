@@ -6,7 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.ui.landing.LandingActivity
-import me.farhan.moviecataloq.util.SPLASH_SCREEN_DURATION
+import me.farhan.moviecataloq.core.util.SPLASH_SCREEN_DURATION
 
 class SplashScreenActivity : AppCompatActivity() {
 

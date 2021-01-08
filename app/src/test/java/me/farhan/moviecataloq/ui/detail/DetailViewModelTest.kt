@@ -4,10 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-import me.farhan.moviecataloq.data.model.Movie
-import me.farhan.moviecataloq.data.model.TvShow
-import me.farhan.moviecataloq.data.repository.MovieCataloqRepository
-import me.farhan.moviecataloq.util.DataDummy
+import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.data.MovieCataloqRepository
+import me.farhan.moviecataloq.core.util.DataDummy
 import me.farhan.moviecataloq.vo.Resource
 import org.junit.Before
 import org.junit.Rule

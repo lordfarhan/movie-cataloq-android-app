@@ -1,7 +1,7 @@
 package me.farhan.moviecataloq.interfaces
 
 import android.view.View
-import me.farhan.moviecataloq.data.model.Movie
+import me.farhan.moviecataloq.core.domain.model.Movie
 
 /**
  * @author farhan

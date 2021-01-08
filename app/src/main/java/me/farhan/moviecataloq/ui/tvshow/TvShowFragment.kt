@@ -7,16 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.util.hide
+import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
-import me.farhan.moviecataloq.data.model.TvShow
-import me.farhan.moviecataloq.di.ViewModelFactory
 import me.farhan.moviecataloq.ui.detail.DetailActivity
-import me.farhan.moviecataloq.util.hide
-import me.farhan.moviecataloq.util.show
-import me.farhan.moviecataloq.vo.Status
+import me.farhan.moviecataloq.vo.Resource
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * @author farhan
@@ -24,7 +23,7 @@ import me.farhan.moviecataloq.vo.Status
  */
 class TvShowFragment : Fragment(), TvShowClickListener {
 
-  private lateinit var viewModel: TvShowViewModel
+  private val viewModel: TvShowViewModel by viewModel()
   private lateinit var adapter: TvShowAdapter
 
   companion object {
@@ -48,9 +47,6 @@ class TvShowFragment : Fragment(), TvShowClickListener {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     if (activity != null) {
-      val factory = ViewModelFactory.getInstance(requireContext())
-      viewModel = ViewModelProvider(this, factory)[TvShowViewModel::class.java]
-
       adapter = TvShowAdapter()
       adapter.listener = this
       recyclerView_tvShow.adapter = adapter
@@ -63,14 +59,16 @@ class TvShowFragment : Fragment(), TvShowClickListener {
     progressBar_tvShow.show()
     viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
       if (tvShows != null) {
-        when (tvShows.status) {
-          Status.LOADING -> progressBar_tvShow.show()
-          Status.SUCCESS -> {
+        when (tvShows) {
+          is Resource.Loading -> {
+            progressBar_tvShow.show()
+          }
+          is Resource.Success -> {
             progressBar_tvShow.hide()
             adapter.submitList(tvShows.data)
             adapter.notifyDataSetChanged()
           }
-          Status.ERROR -> {
+          is Resource.Error -> {
             progressBar_tvShow.hide()
             Toast.makeText(
               requireContext(),

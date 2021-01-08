@@ -10,7 +10,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import me.farhan.moviecataloq.R
-import me.farhan.moviecataloq.util.EspressoIdlingResource
+import me.farhan.moviecataloq.core.util.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

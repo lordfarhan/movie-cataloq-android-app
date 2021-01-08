@@ -3,23 +3,23 @@ package me.farhan.moviecataloq.ui.favorite.tvshow
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
-import me.farhan.moviecataloq.data.model.TvShow
 
 /**
  * @author farhan
  * created at at 16:19 on 28/11/20.
  */
 class FavoriteTvShowAdapter :
-  PagedListAdapter<TvShow, FavoriteTvShowAdapter.ViewHolder>(DiffCallback()) {
+  ListAdapter<TvShow, FavoriteTvShowAdapter.ViewHolder>(DiffCallback()) {
 
   var listener: TvShowClickListener? = null
 

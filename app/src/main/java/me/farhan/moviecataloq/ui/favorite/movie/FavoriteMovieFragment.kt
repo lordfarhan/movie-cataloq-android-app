@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_favorite_movie.*
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.interfaces.MovieClickListener
-import me.farhan.moviecataloq.data.model.Movie
-import me.farhan.moviecataloq.di.ViewModelFactory
 import me.farhan.moviecataloq.ui.detail.DetailActivity
-import me.farhan.moviecataloq.util.hide
-import me.farhan.moviecataloq.util.show
+import me.farhan.moviecataloq.core.util.hide
+import me.farhan.moviecataloq.core.util.show
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * @author farhan
@@ -22,7 +21,7 @@ import me.farhan.moviecataloq.util.show
  */
 class FavoriteMovieFragment : Fragment(), MovieClickListener {
 
-  private lateinit var viewModel: FavoriteMovieViewModel
+  private val viewModel: FavoriteMovieViewModel by viewModel()
   private lateinit var adapter: FavoriteMovieAdapter
 
   companion object {
@@ -46,16 +45,12 @@ class FavoriteMovieFragment : Fragment(), MovieClickListener {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     if (activity != null) {
-      val factory = ViewModelFactory.getInstance(requireContext())
-      viewModel = ViewModelProvider(this, factory)[FavoriteMovieViewModel::class.java]
-
       adapter = FavoriteMovieAdapter()
       adapter.listener = this
       recyclerView_favoriteMovie.adapter = adapter
 
       subscribeInterface()
     }
-
   }
 
   private fun subscribeInterface() {

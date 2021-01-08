@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
-import me.farhan.moviecataloq.data.model.Movie
-import me.farhan.moviecataloq.data.repository.MovieCataloqRepository
+import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.data.MovieCataloqRepository
 import me.farhan.moviecataloq.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull

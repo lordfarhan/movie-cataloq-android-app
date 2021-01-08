@@ -3,18 +3,17 @@ package me.farhan.moviecataloq.ui.detail
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_detail.*
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
-import me.farhan.moviecataloq.data.model.Movie
-import me.farhan.moviecataloq.data.model.TvShow
-import me.farhan.moviecataloq.di.ViewModelFactory
-import me.farhan.moviecataloq.util.hide
-import me.farhan.moviecataloq.util.show
-import me.farhan.moviecataloq.vo.Status
+import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.util.hide
+import me.farhan.moviecataloq.core.util.show
+import me.farhan.moviecataloq.vo.Resource
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * @author farhan
@@ -30,17 +29,13 @@ class DetailActivity : AppCompatActivity() {
   private lateinit var mMovie: Movie
   private lateinit var mTvShow: TvShow
 
-  private lateinit var viewModel: DetailViewModel
+  private val viewModel: DetailViewModel by viewModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_detail)
 
     imageView_actionBack.setOnClickListener { onBackPressed() }
-
-    val factory = ViewModelFactory.getInstance(this)
-
-    viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
     when {
       intent.hasExtra(MOVIE) -> {
@@ -86,9 +81,11 @@ class DetailActivity : AppCompatActivity() {
     viewModel.getMovie().observe(this, { movie ->
       if (movie != null) {
         movie.data?.let { viewModel.setMovie(it) }
-        when (movie.status) {
-          Status.LOADING -> progressBar_detail.show()
-          Status.SUCCESS -> {
+        when (movie) {
+          is Resource.Loading -> {
+            progressBar_detail.show()
+          }
+          is Resource.Success -> {
             progressBar_detail.hide()
             Glide.with(this)
               .load(BuildConfig.IMAGE_URL + movie.data?.cover)
@@ -120,7 +117,7 @@ class DetailActivity : AppCompatActivity() {
             textView_overviewDetail.text = movie.data?.overview
             initialFavoriteFab(viewModel.isFavorite(movie.data?.isFavorite))
           }
-          Status.ERROR -> {
+          is Resource.Error -> {
             progressBar_detail.hide()
             Toast.makeText(
               this,
@@ -138,9 +135,11 @@ class DetailActivity : AppCompatActivity() {
     viewModel.getTvShow().observe(this, { tvShow ->
       if (tvShow != null) {
         tvShow.data?.let { viewModel.setTvShow(it) }
-        when (tvShow.status) {
-          Status.LOADING -> progressBar_detail.show()
-          Status.SUCCESS -> {
+        when (tvShow) {
+          is Resource.Loading -> {
+            progressBar_detail.show()
+          }
+          is Resource.Success -> {
             progressBar_detail.hide()
             Glide.with(this)
               .load(BuildConfig.IMAGE_URL + tvShow.data?.cover)
@@ -172,7 +171,7 @@ class DetailActivity : AppCompatActivity() {
             textView_overviewDetail.text = tvShow.data?.overview
             initialFavoriteFab(viewModel.isFavorite(tvShow.data?.isFavorite))
           }
-          Status.ERROR -> {
+          is Resource.Error -> {
             progressBar_detail.hide()
             Toast.makeText(
               this,
