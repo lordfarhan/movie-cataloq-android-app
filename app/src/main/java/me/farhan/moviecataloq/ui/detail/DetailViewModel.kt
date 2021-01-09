@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.domain.usecase.UseCase
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 
 /**
  * @author farhan

@@ -30,7 +30,7 @@ class FavoriteTvShowViewModelTest {
   var instantTaskExecutorRule = InstantTaskExecutorRule()
 
   @Mock
-  private lateinit var repository: MovieCataloqRepository
+  private lateinit var repository: _root_ide_package_.me.farhan.moviecataloq.core.data.MovieCataloqRepository
 
   @Mock
   private lateinit var observer: Observer<PagedList<TvShow>>

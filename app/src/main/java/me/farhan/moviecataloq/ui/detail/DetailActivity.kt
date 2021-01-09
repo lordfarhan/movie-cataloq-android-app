@@ -13,7 +13,7 @@ import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.ActivityDetailBinding
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**

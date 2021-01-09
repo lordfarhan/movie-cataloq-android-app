@@ -8,7 +8,7 @@ import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.data.MovieCataloqRepository
 import me.farhan.moviecataloq.core.util.DataDummy
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -31,7 +31,7 @@ class DetailViewModelTest {
   var instantTaskExecutorRule = InstantTaskExecutorRule()
 
   @Mock
-  private lateinit var repository: MovieCataloqRepository
+  private lateinit var repository: _root_ide_package_.me.farhan.moviecataloq.core.data.MovieCataloqRepository
 
   private val dummyMovie = DataDummy.getMovies()[0]
   private val movieId = dummyMovie.id

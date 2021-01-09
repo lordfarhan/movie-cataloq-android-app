@@ -10,7 +10,7 @@ import me.farhan.moviecataloq.core.data.source.remote.RemoteDataSource
 import me.farhan.moviecataloq.core.util.AppExecutors
 import me.farhan.moviecataloq.core.util.DataDummy
 import me.farhan.moviecataloq.core.util.mockPagedList
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule

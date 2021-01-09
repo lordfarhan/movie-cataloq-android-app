@@ -15,7 +15,7 @@ import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.FragmentMovieBinding
 import me.farhan.moviecataloq.interfaces.MovieClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**

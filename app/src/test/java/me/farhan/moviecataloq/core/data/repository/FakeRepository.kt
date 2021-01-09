@@ -13,7 +13,7 @@ import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.data.source.remote.RemoteDataSource
 import me.farhan.moviecataloq.core.data.source.remote.response.ApiResponse
 import me.farhan.moviecataloq.core.util.AppExecutors
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 
 /**
  * @author farhan

@@ -16,7 +16,7 @@ import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.FragmentTvShowBinding
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**

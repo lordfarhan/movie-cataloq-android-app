@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.data.MovieCataloqRepository
-import me.farhan.moviecataloq.vo.Resource
+import me.farhan.moviecataloq.core.data.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -31,7 +31,7 @@ class MovieViewModelTest {
   var instantTaskExecutorRule = InstantTaskExecutorRule()
 
   @Mock
-  private lateinit var repository: MovieCataloqRepository
+  private lateinit var repository: _root_ide_package_.me.farhan.moviecataloq.core.data.MovieCataloqRepository
 
   @Mock
   private lateinit var observer: Observer<Resource<PagedList<Movie>>>
