@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_landing.*
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.databinding.ActivityLandingBinding
 import me.farhan.moviecataloq.ui.favorite.FavoriteActivity
 
 /**
@@ -17,19 +18,20 @@ import me.farhan.moviecataloq.ui.favorite.FavoriteActivity
 class LandingActivity : AppCompatActivity() {
 
   private lateinit var adapter: LandingAdapter
+  private lateinit var binding: ActivityLandingBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_landing)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_landing)
 
-    setSupportActionBar(toolbar_landing)
+    setSupportActionBar(binding.toolbarLanding)
     supportActionBar?.title = ""
 
     adapter = LandingAdapter(this)
-    viewPager2_landing.adapter = adapter
-    viewPager2_landing.offscreenPageLimit = 2
+    binding.viewPager2Landing.adapter = adapter
+    binding.viewPager2Landing.offscreenPageLimit = 2
 
-    TabLayoutMediator(tabLayout_landing, viewPager2_landing) { tab, position ->
+    TabLayoutMediator(binding.tabLayoutLanding, binding.viewPager2Landing) { tab, position ->
       when (position) {
         0 -> tab.text = resources.getString(R.string.movies)
         1 -> tab.text = resources.getString(R.string.tv_shows)

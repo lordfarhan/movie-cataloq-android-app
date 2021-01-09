@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_favorite_movie.*
-import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.Movie
-import me.farhan.moviecataloq.interfaces.MovieClickListener
-import me.farhan.moviecataloq.ui.detail.DetailActivity
+import me.farhan.moviecataloq.core.ui.favorite.movie.FavoriteMovieAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
+import me.farhan.moviecataloq.databinding.FragmentFavoriteMovieBinding
+import me.farhan.moviecataloq.interfaces.MovieClickListener
+import me.farhan.moviecataloq.ui.detail.DetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -23,6 +23,7 @@ class FavoriteMovieFragment : Fragment(), MovieClickListener {
 
   private val viewModel: FavoriteMovieViewModel by viewModel()
   private lateinit var adapter: FavoriteMovieAdapter
+  private lateinit var binding: FragmentFavoriteMovieBinding
 
   companion object {
     fun newInstance(): Fragment {
@@ -38,8 +39,10 @@ class FavoriteMovieFragment : Fragment(), MovieClickListener {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_favorite_movie, container, false)
+  ): View {
+    binding = FragmentFavoriteMovieBinding.inflate(inflater, container, false)
+    context ?: return binding.root
+    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,17 +50,17 @@ class FavoriteMovieFragment : Fragment(), MovieClickListener {
     if (activity != null) {
       adapter = FavoriteMovieAdapter()
       adapter.listener = this
-      recyclerView_favoriteMovie.adapter = adapter
+      binding.recyclerViewFavoriteMovie.adapter = adapter
 
       subscribeInterface()
     }
   }
 
   private fun subscribeInterface() {
-    progressBar_favoriteMovie.show()
+    binding.progressBarFavoriteMovie.show()
     viewModel.getFavoriteMovies().observe(viewLifecycleOwner, { favoriteMovies ->
       if (favoriteMovies != null) {
-        progressBar_favoriteMovie.hide()
+        binding.progressBarFavoriteMovie.hide()
         adapter.submitList(favoriteMovies)
         adapter.notifyDataSetChanged()
       }

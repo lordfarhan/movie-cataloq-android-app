@@ -3,15 +3,16 @@ package me.farhan.moviecataloq.ui.detail
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.activity_detail.*
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
+import me.farhan.moviecataloq.databinding.ActivityDetailBinding
 import me.farhan.moviecataloq.vo.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -26,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
     const val TV_SHOW = "tv_show"
   }
 
+  private lateinit var binding: ActivityDetailBinding
   private lateinit var mMovie: Movie
   private lateinit var mTvShow: TvShow
 
@@ -33,9 +35,9 @@ class DetailActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_detail)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
-    imageView_actionBack.setOnClickListener { onBackPressed() }
+    binding.imageViewActionBack.setOnClickListener { onBackPressed() }
 
     when {
       intent.hasExtra(MOVIE) -> {
@@ -57,36 +59,38 @@ class DetailActivity : AppCompatActivity() {
   }
 
   private fun initialFavoriteFab(isFavorite: Boolean) {
-    if (isFavorite) {
-      floatingActionButton_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-      floatingActionButton_favorite.setOnClickListener { removeFromFavorite() }
-    } else {
-      floatingActionButton_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-      floatingActionButton_favorite.setOnClickListener { addToFavorite() }
+    binding.apply {
+      if (isFavorite) {
+        floatingActionButtonFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        floatingActionButtonFavorite.setOnClickListener { removeFromFavorite() }
+      } else {
+        floatingActionButtonFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        floatingActionButtonFavorite.setOnClickListener { addToFavorite() }
+      }
     }
   }
 
   private fun addToFavorite() {
     viewModel.addFavorite()
-    floatingActionButton_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+    binding.floatingActionButtonFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
   }
 
   private fun removeFromFavorite() {
     viewModel.removeFavorite()
-    floatingActionButton_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+    binding.floatingActionButtonFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
   }
 
   private fun subscribeMovieDetail() {
-    progressBar_detail.show()
+    binding.progressBarDetail.show()
     viewModel.getMovie().observe(this, { movie ->
       if (movie != null) {
         movie.data?.let { viewModel.setMovie(it) }
         when (movie) {
           is Resource.Loading -> {
-            progressBar_detail.show()
+            binding.progressBarDetail.show()
           }
           is Resource.Success -> {
-            progressBar_detail.hide()
+            binding.progressBarDetail.hide()
             Glide.with(this)
               .load(BuildConfig.IMAGE_URL + movie.data?.cover)
               .apply(
@@ -94,7 +98,7 @@ class DetailActivity : AppCompatActivity() {
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
                   .error(R.drawable.ic_baseline_close_24)
               )
-              .into(imageView_backCoverDetail)
+              .into(binding.imageViewBackCoverDetail)
             Glide.with(this)
               .load(BuildConfig.IMAGE_URL + movie.data?.cover)
               .apply(
@@ -102,23 +106,25 @@ class DetailActivity : AppCompatActivity() {
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
                   .error(R.drawable.ic_baseline_close_24)
               )
-              .into(imageView_coverDetail)
-            textView_titleDetail.text = movie.data?.title
-            textView_taglineDetail.text = movie.data?.tagline
-            textView_ratingDetail.text =
-              String.format(
-                "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
-                movie.data?.voteAverage,
-                movie.data?.voteCount
-              )
-            textView_dateTitleDetail.text = resources.getString(R.string.movie_release_date)
-            textView_dateDetail.text = movie.data?.getDate()
-            textView_statusDetail.text = movie.data?.status
-            textView_overviewDetail.text = movie.data?.overview
+              .into(binding.imageViewCoverDetail)
+            binding.apply {
+              textViewTitleDetail.text = movie.data?.title
+              textViewTaglineDetail.text = movie.data?.tagline
+              textViewRatingDetail.text =
+                String.format(
+                  "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
+                  movie.data?.voteAverage,
+                  movie.data?.voteCount
+                )
+              textViewDateTitleDetail.text = resources.getString(R.string.movie_release_date)
+              textViewDateDetail.text = movie.data?.getDate()
+              textViewStatusDetail.text = movie.data?.status
+              textViewOverviewDetail.text = movie.data?.overview
+            }
             initialFavoriteFab(viewModel.isFavorite(movie.data?.isFavorite))
           }
           is Resource.Error -> {
-            progressBar_detail.hide()
+            binding.progressBarDetail.hide()
             Toast.makeText(
               this,
               resources.getString(R.string.dialog_error),
@@ -131,16 +137,16 @@ class DetailActivity : AppCompatActivity() {
   }
 
   private fun subscribeTvShowDetail() {
-    progressBar_detail.show()
+    binding.progressBarDetail.show()
     viewModel.getTvShow().observe(this, { tvShow ->
       if (tvShow != null) {
         tvShow.data?.let { viewModel.setTvShow(it) }
         when (tvShow) {
           is Resource.Loading -> {
-            progressBar_detail.show()
+            binding.progressBarDetail.show()
           }
           is Resource.Success -> {
-            progressBar_detail.hide()
+            binding.progressBarDetail.hide()
             Glide.with(this)
               .load(BuildConfig.IMAGE_URL + tvShow.data?.cover)
               .apply(
@@ -148,7 +154,7 @@ class DetailActivity : AppCompatActivity() {
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
                   .error(R.drawable.ic_baseline_close_24)
               )
-              .into(imageView_backCoverDetail)
+              .into(binding.imageViewBackCoverDetail)
             Glide.with(this)
               .load(BuildConfig.IMAGE_URL + tvShow.data?.cover)
               .apply(
@@ -156,23 +162,25 @@ class DetailActivity : AppCompatActivity() {
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
                   .error(R.drawable.ic_baseline_close_24)
               )
-              .into(imageView_coverDetail)
-            textView_titleDetail.text = tvShow.data?.name
-            textView_taglineDetail.text = tvShow.data?.tagline
-            textView_ratingDetail.text =
-              String.format(
-                "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
-                tvShow.data?.voteAverage,
-                tvShow.data?.voteCount
-              )
-            textView_dateTitleDetail.text = resources.getString(R.string.tv_show_first_air_date)
-            textView_dateDetail.text = tvShow.data?.getDate()
-            textView_statusDetail.text = tvShow.data?.status
-            textView_overviewDetail.text = tvShow.data?.overview
+              .into(binding.imageViewCoverDetail)
+            binding.apply {
+              textViewTitleDetail.text = tvShow.data?.name
+              textViewTaglineDetail.text = tvShow.data?.tagline
+              textViewRatingDetail.text =
+                String.format(
+                  "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
+                  tvShow.data?.voteAverage,
+                  tvShow.data?.voteCount
+                )
+              textViewDateTitleDetail.text = resources.getString(R.string.tv_show_first_air_date)
+              textViewDateDetail.text = tvShow.data?.getDate()
+              textViewStatusDetail.text = tvShow.data?.status
+              textViewOverviewDetail.text = tvShow.data?.overview
+            }
             initialFavoriteFab(viewModel.isFavorite(tvShow.data?.isFavorite))
           }
           is Resource.Error -> {
-            progressBar_detail.hide()
+            binding.progressBarDetail.hide()
             Toast.makeText(
               this,
               resources.getString(R.string.dialog_error),

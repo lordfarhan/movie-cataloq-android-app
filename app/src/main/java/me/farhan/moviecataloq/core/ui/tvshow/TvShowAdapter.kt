@@ -1,4 +1,4 @@
-package me.farhan.moviecataloq.ui.tvshow
+package me.farhan.moviecataloq.core.ui.tvshow
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.databinding.ItemTvShowBinding
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
 
 /**
@@ -36,10 +36,11 @@ class TvShowAdapter :
   }
 
   class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    private val binding = ItemTvShowBinding.bind(view)
     fun bind(listener: TvShowClickListener?, tvShow: TvShow) {
       view.apply {
-        textView_nameTvShowItem.text = tvShow.name
-        textView_ratingTvShowItem.text =
+        binding.textViewNameTvShowItem.text = tvShow.name
+        binding.textViewRatingTvShowItem.text =
           String.format(
             "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
             tvShow.voteAverage,
@@ -52,10 +53,10 @@ class TvShowAdapter :
               .placeholderOf(R.drawable.ic_baseline_refresh_24)
               .error(R.drawable.ic_baseline_close_24)
           )
-          .into(imageView_coverTvShowItem)
-        textView_releaseDateTvShowItem.text = tvShow.getYear()
+          .into(binding.imageViewCoverTvShowItem)
+        binding.textViewReleaseDateTvShowItem.text = tvShow.getYear()
 
-        constraintLayout_containerTvShowItem.setOnClickListener {
+        binding.constraintLayoutContainerTvShowItem.setOnClickListener {
           listener?.onItemClicked(view, tvShow)
         }
       }

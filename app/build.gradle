@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
 }
+apply from: '../shared_dependencies.gradle'
 
 android {
     compileSdkVersion 29
@@ -40,10 +41,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
-
+    implementation project(":core")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$coreVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
@@ -68,13 +72,11 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    //paging
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
-
     //kotlin coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 
     //koin
     implementation "org.koin:koin-core:$koinVersion"

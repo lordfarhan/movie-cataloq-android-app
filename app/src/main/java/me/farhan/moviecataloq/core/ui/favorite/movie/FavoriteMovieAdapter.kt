@@ -1,4 +1,4 @@
-package me.farhan.moviecataloq.ui.favorite.movie
+package me.farhan.moviecataloq.core.ui.favorite.movie
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_movie.view.*
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.databinding.ItemMovieBinding
 import me.farhan.moviecataloq.interfaces.MovieClickListener
 
 /**
@@ -34,10 +34,11 @@ class FavoriteMovieAdapter :
   }
 
   class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    private val binding = ItemMovieBinding.bind(view)
     fun bind(listener: MovieClickListener?, favoriteMovie: Movie) {
       view.apply {
-        textView_titleMovieItem.text = favoriteMovie.title
-        textView_ratingMovieItem.text =
+        binding.textViewTitleMovieItem.text = favoriteMovie.title
+        binding.textViewRatingMovieItem.text =
           String.format(
             "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
             favoriteMovie.voteAverage,
@@ -50,10 +51,10 @@ class FavoriteMovieAdapter :
               .placeholderOf(R.drawable.ic_baseline_refresh_24)
               .error(R.drawable.ic_baseline_close_24)
           )
-          .into(imageView_coverMovieItem)
-        textView_releaseDateMovieItem.text = favoriteMovie.getYear()
+          .into(binding.imageViewCoverMovieItem)
+        binding.textViewReleaseDateMovieItem.text = favoriteMovie.getYear()
 
-        constraintLayout_containerMovieItem.setOnClickListener {
+        binding.constraintLayoutContainerMovieItem.setOnClickListener {
           listener?.onItemClicked(view, favoriteMovie)
         }
       }

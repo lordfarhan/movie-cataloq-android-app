@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_movie.*
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.ui.movie.MovieAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
+import me.farhan.moviecataloq.databinding.FragmentMovieBinding
 import me.farhan.moviecataloq.interfaces.MovieClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
 import me.farhan.moviecataloq.vo.Resource
@@ -25,6 +26,7 @@ class MovieFragment : Fragment(), MovieClickListener {
 
   private val viewModel: MovieViewModel by viewModel()
   private lateinit var adapter: MovieAdapter
+  private lateinit var binding: FragmentMovieBinding
 
   companion object {
     fun newInstance(): MovieFragment {
@@ -40,8 +42,10 @@ class MovieFragment : Fragment(), MovieClickListener {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_movie, container, false)
+  ): View {
+    binding = FragmentMovieBinding.inflate(inflater, container, false)
+    context ?: return binding.root
+    return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -49,27 +53,27 @@ class MovieFragment : Fragment(), MovieClickListener {
     if (activity != null) {
       adapter = MovieAdapter()
       adapter.listener = this
-      recyclerView_movie.adapter = adapter
+      binding.recyclerViewMovie.adapter = adapter
 
       subscribeInterface()
     }
   }
 
   private fun subscribeInterface() {
-    progressBar_movie.show()
+    binding.progressBarMovie.show()
     viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
       if (movies != null) {
         when (movies) {
           is Resource.Loading -> {
-            progressBar_movie.show()
+            binding.progressBarMovie.show()
           }
           is Resource.Success -> {
-            progressBar_movie.hide()
+            binding.progressBarMovie.hide()
             adapter.submitList(movies.data)
             adapter.notifyDataSetChanged()
           }
           is Resource.Error -> {
-            progressBar_movie.hide()
+            binding.progressBarMovie.hide()
             Toast.makeText(
               requireContext(),
               resources.getString(R.string.dialog_error),

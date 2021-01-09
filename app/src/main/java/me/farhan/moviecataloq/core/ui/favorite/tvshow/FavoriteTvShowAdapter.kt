@@ -1,4 +1,4 @@
-package me.farhan.moviecataloq.ui.favorite.tvshow
+package me.farhan.moviecataloq.core.ui.favorite.tvshow
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.databinding.ItemTvShowBinding
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
 
 /**
@@ -24,9 +24,7 @@ class FavoriteTvShowAdapter :
   var listener: TvShowClickListener? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-    ViewHolder(
-      LayoutInflater.from(parent.context).inflate(R.layout.item_tv_show, parent, false)
-    )
+    ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_tv_show, parent, false))
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     val favTvShow = getItem(position)
@@ -36,10 +34,11 @@ class FavoriteTvShowAdapter :
   }
 
   class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    private val binding = ItemTvShowBinding.bind(view)
     fun bind(listener: TvShowClickListener?, favoriteTvShow: TvShow) {
       view.apply {
-        textView_nameTvShowItem.text = favoriteTvShow.name
-        textView_ratingTvShowItem.text =
+        binding.textViewNameTvShowItem.text = favoriteTvShow.name
+        binding.textViewRatingTvShowItem.text =
           String.format(
             "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
             favoriteTvShow.voteAverage,
@@ -52,10 +51,10 @@ class FavoriteTvShowAdapter :
               .placeholderOf(R.drawable.ic_baseline_refresh_24)
               .error(R.drawable.ic_baseline_close_24)
           )
-          .into(imageView_coverTvShowItem)
-        textView_releaseDateTvShowItem.text = favoriteTvShow.getYear()
+          .into(binding.imageViewCoverTvShowItem)
+        binding.textViewReleaseDateTvShowItem.text = favoriteTvShow.getYear()
 
-        constraintLayout_containerTvShowItem.setOnClickListener {
+        binding.constraintLayoutContainerTvShowItem.setOnClickListener {
           listener?.onItemClicked(view, favoriteTvShow)
         }
       }

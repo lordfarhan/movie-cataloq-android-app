@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_favorite_tvshow.*
-import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.TvShow
-import me.farhan.moviecataloq.interfaces.TvShowClickListener
-import me.farhan.moviecataloq.ui.detail.DetailActivity
+import me.farhan.moviecataloq.core.ui.favorite.tvshow.FavoriteTvShowAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
+import me.farhan.moviecataloq.databinding.FragmentFavoriteTvshowBinding
+import me.farhan.moviecataloq.interfaces.TvShowClickListener
+import me.farhan.moviecataloq.ui.detail.DetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -23,6 +23,7 @@ class FavoriteTvShowFragment : Fragment(), TvShowClickListener {
 
   private val viewModel: FavoriteTvShowViewModel by viewModel()
   private lateinit var adapter: FavoriteTvShowAdapter
+  private lateinit var binding: FragmentFavoriteTvshowBinding
 
   companion object {
     fun newInstance(): Fragment {
@@ -39,7 +40,9 @@ class FavoriteTvShowFragment : Fragment(), TvShowClickListener {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_favorite_tvshow, container, false)
+    binding = FragmentFavoriteTvshowBinding.inflate(inflater, container, false)
+    context ?: return binding.root
+    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,17 +50,17 @@ class FavoriteTvShowFragment : Fragment(), TvShowClickListener {
     if (activity != null) {
       adapter = FavoriteTvShowAdapter()
       adapter.listener = this
-      recyclerView_favoriteTvShow.adapter = adapter
+      binding.recyclerViewFavoriteTvShow.adapter = adapter
 
       subscribeInterface()
     }
   }
 
   private fun subscribeInterface() {
-    progressBar_favoriteTvShow.show()
+    binding.progressBarFavoriteTvShow.show()
     viewModel.getFavoriteTvShows().observe(viewLifecycleOwner, { favoriteTvShows ->
       if (favoriteTvShows != null) {
-        progressBar_favoriteTvShow.hide()
+        binding.progressBarFavoriteTvShow.hide()
         adapter.submitList(favoriteTvShows)
         adapter.notifyDataSetChanged()
       }

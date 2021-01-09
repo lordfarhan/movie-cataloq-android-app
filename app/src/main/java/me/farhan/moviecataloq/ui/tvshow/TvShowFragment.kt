@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.ui.tvshow.TvShowAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
+import me.farhan.moviecataloq.databinding.FragmentTvShowBinding
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
 import me.farhan.moviecataloq.vo.Resource
@@ -25,6 +27,7 @@ class TvShowFragment : Fragment(), TvShowClickListener {
 
   private val viewModel: TvShowViewModel by viewModel()
   private lateinit var adapter: TvShowAdapter
+  private lateinit var binding: FragmentTvShowBinding
 
   companion object {
     fun newInstance(): TvShowFragment {
@@ -40,8 +43,10 @@ class TvShowFragment : Fragment(), TvShowClickListener {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_tv_show, container, false)
+  ): View {
+    binding = FragmentTvShowBinding.inflate(inflater, container, false)
+    context ?: return binding.root
+    return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {

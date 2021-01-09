@@ -2,9 +2,11 @@ package me.farhan.moviecataloq.ui.favorite
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_favorite.*
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.databinding.ActivityFavoriteBinding
 
 /**
  * @author farhan
@@ -13,10 +15,11 @@ import me.farhan.moviecataloq.R
 class FavoriteActivity : AppCompatActivity() {
 
   private lateinit var adapter: FavoriteAdapter
+  private lateinit var binding: ActivityFavoriteBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_favorite)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_favorite)
 
     setSupportActionBar(toolbar_favorite)
     supportActionBar?.title = resources.getString(R.string.favorites)
