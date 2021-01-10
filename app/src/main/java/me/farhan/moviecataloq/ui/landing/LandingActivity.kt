@@ -1,6 +1,7 @@
 package me.farhan.moviecataloq.ui.landing
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.databinding.ActivityLandingBinding
-import me.farhan.moviecataloq.ui.favorite.FavoriteActivity
 
 /**
  * @author farhan
@@ -47,7 +47,8 @@ class LandingActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
       R.id.menu_favorite -> {
-        startActivity(Intent(this, FavoriteActivity::class.java))
+        val uri = Uri.parse("moviecataloq://favorites")
+        startActivity(Intent(Intent.ACTION_VIEW, uri))
         return true
       }
       else -> super.onOptionsItemSelected(item)

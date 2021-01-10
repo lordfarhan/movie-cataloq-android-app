@@ -1,4 +1,4 @@
-package me.farhan.moviecataloq.ui.favorite.tvshow
+package me.farhan.moviecataloq.favorites.tvshow
 
 import android.content.Intent
 import android.os.Bundle

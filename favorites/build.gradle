@@ -1,8 +1,6 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.dynamic-feature'
     id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
 }
 apply from: '../shared_dependencies.gradle'
 
@@ -11,18 +9,13 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "me.farhan.moviecataloq"
+        applicationId "me.farhan.moviecataloq.favorites"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
-        buildConfigField "String", "IMAGE_URL", "\"https://image.tmdb.org/t/p/w600_and_h900_bestv2\""
-        buildConfigField "String", "API_KEY", "\"a48a85aaf09e47fcb6025c99f321faef\""
-
     }
 
     buildTypes {
@@ -31,24 +24,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding {
-        enabled = true
+
+    buildFeatures {
+        viewBinding = true
     }
-    dynamicFeatures = [':favorites']
 }
 
 dependencies {
     implementation project(":core")
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":app")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

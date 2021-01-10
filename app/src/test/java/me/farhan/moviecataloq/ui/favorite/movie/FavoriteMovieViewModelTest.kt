@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import me.farhan.moviecataloq.core.domain.model.Movie
-import me.farhan.moviecataloq.core.data.MovieCataloqRepository
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -24,7 +23,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class FavoriteMovieViewModelTest {
 
-  private lateinit var viewModel: FavoriteMovieViewModel
+  private lateinit var viewModel: me.farhan.moviecataloq.favorites.movie.FavoriteMovieViewModel
 
   @get:Rule
   var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -40,7 +39,7 @@ class FavoriteMovieViewModelTest {
 
   @Before
   fun setUp() {
-    viewModel = FavoriteMovieViewModel(repository)
+    viewModel = me.farhan.moviecataloq.favorites.movie.FavoriteMovieViewModel(repository)
   }
 
   @Test
