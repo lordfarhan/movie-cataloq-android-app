@@ -1,4 +1,4 @@
-package me.farhan.moviecataloq.core.ui.favorite.tvshow
+package me.farhan.moviecataloq.core.ui.favorites.tvshow
 
 import android.view.LayoutInflater
 import android.view.View
