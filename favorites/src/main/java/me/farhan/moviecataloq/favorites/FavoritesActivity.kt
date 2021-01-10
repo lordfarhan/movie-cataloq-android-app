@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import me.farhan.moviecataloq.R
-import me.farhan.moviecataloq.databinding.ActivityFavoriteBinding
+import me.farhan.moviecataloq.databinding.ActivityFavoritesBinding
 import org.koin.core.context.loadKoinModules
 
 /**
@@ -15,11 +15,11 @@ import org.koin.core.context.loadKoinModules
 class FavoritesActivity : AppCompatActivity() {
 
   private lateinit var adapter: FavoritesAdapter
-  private lateinit var binding: ActivityFavoriteBinding
+  private lateinit var binding: ActivityFavoritesBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_favorite)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_favorites)
 
     loadKoinModules(favoritesModule)
 

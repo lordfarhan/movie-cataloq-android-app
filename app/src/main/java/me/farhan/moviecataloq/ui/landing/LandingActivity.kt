@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.databinding.ActivityLandingBinding
+import me.farhan.moviecataloq.ui.settings.SettingsActivity
 
 /**
  * @author farhan
@@ -46,9 +47,13 @@ class LandingActivity : AppCompatActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
-      R.id.menu_favorite -> {
+      R.id.menu_favorites -> {
         val uri = Uri.parse("moviecataloq://favorites")
         startActivity(Intent(Intent.ACTION_VIEW, uri))
+        return true
+      }
+      R.id.menu_settings -> {
+        startActivity(Intent(this, SettingsActivity::class.java))
         return true
       }
       else -> super.onOptionsItemSelected(item)

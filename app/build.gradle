@@ -52,6 +52,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+    //preferences
+    implementation "androidx.preference:preference-ktx:$preferenceVersion"
+
     //kenburnsview
     implementation "com.flaviofaria:kenburnsview:$kenburnsVersion"
 }
