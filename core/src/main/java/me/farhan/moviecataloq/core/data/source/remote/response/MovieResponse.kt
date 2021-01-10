@@ -12,8 +12,10 @@ import kotlinx.android.parcel.Parcelize
 data class MovieResponse(
   @field:SerializedName("id")
   val id: Long,
+  @field:SerializedName("backdrop_path")
+  val backdropPath: String,
   @field:SerializedName("poster_path")
-  val cover: String,
+  val posterPath: String,
   @field:SerializedName("title")
   val title: String,
   @field:SerializedName("release_date")

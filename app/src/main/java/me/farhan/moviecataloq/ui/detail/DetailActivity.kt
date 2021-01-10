@@ -8,12 +8,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.core.data.Resource
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.ActivityDetailBinding
-import me.farhan.moviecataloq.core.data.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -92,7 +92,7 @@ class DetailActivity : AppCompatActivity() {
           is Resource.Success -> {
             binding.progressBarDetail.hide()
             Glide.with(this)
-              .load(BuildConfig.IMAGE_URL + movie.data?.cover)
+              .load(BuildConfig.IMAGE_URL + movie.data?.backdropPath)
               .apply(
                 RequestOptions
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
@@ -100,7 +100,7 @@ class DetailActivity : AppCompatActivity() {
               )
               .into(binding.imageViewBackCoverDetail)
             Glide.with(this)
-              .load(BuildConfig.IMAGE_URL + movie.data?.cover)
+              .load(BuildConfig.IMAGE_URL + movie.data?.posterPath)
               .apply(
                 RequestOptions
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
@@ -148,7 +148,7 @@ class DetailActivity : AppCompatActivity() {
           is Resource.Success -> {
             binding.progressBarDetail.hide()
             Glide.with(this)
-              .load(BuildConfig.IMAGE_URL + tvShow.data?.cover)
+              .load(BuildConfig.IMAGE_URL + tvShow.data?.backdropPath)
               .apply(
                 RequestOptions
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)
@@ -156,7 +156,7 @@ class DetailActivity : AppCompatActivity() {
               )
               .into(binding.imageViewBackCoverDetail)
             Glide.with(this)
-              .load(BuildConfig.IMAGE_URL + tvShow.data?.cover)
+              .load(BuildConfig.IMAGE_URL + tvShow.data?.posterPath)
               .apply(
                 RequestOptions
                   .placeholderOf(R.drawable.ic_baseline_refresh_24)

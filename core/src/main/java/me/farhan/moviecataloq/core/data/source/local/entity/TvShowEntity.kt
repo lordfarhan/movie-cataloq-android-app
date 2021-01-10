@@ -16,8 +16,10 @@ data class TvShowEntity(
   @PrimaryKey
   @SerializedName("id")
   var id: Long,
+  @SerializedName("backdrop_path")
+  val backdropPath: String,
   @SerializedName("poster_path")
-  var cover: String,
+  val posterPath: String,
   @SerializedName("name")
   var name: String,
   @SerializedName("first_air_date")

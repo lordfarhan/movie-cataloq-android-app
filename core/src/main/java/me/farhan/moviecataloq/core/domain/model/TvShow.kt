@@ -10,7 +10,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class TvShow(
   val id: Long,
-  val cover: String,
+  val backdropPath: String,
+  val posterPath: String,
   val name: String,
   val firstAirDate: String,
   val voteAverage: Double,

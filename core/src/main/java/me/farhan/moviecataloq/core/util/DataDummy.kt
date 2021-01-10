@@ -15,6 +15,7 @@ class DataDummy {
                 Movie(
                     1,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -26,6 +27,7 @@ class DataDummy {
             movies.add(
                 Movie(
                     2,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -39,6 +41,7 @@ class DataDummy {
                 Movie(
                     3,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -50,6 +53,7 @@ class DataDummy {
             movies.add(
                 Movie(
                     4,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -63,6 +67,7 @@ class DataDummy {
                 Movie(
                     5,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -74,6 +79,7 @@ class DataDummy {
             movies.add(
                 Movie(
                     6,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -87,6 +93,7 @@ class DataDummy {
                 Movie(
                     7,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -98,6 +105,7 @@ class DataDummy {
             movies.add(
                 Movie(
                     8,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -111,6 +119,7 @@ class DataDummy {
                 Movie(
                     9,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -122,6 +131,7 @@ class DataDummy {
             movies.add(
                 Movie(
                     10,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -148,6 +158,7 @@ class DataDummy {
                 TvShow(
                     1,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -159,6 +170,7 @@ class DataDummy {
             tvShows.add(
                 TvShow(
                     2,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -172,6 +184,7 @@ class DataDummy {
                 TvShow(
                     3,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -183,6 +196,7 @@ class DataDummy {
             tvShows.add(
                 TvShow(
                     4,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -196,6 +210,7 @@ class DataDummy {
                 TvShow(
                     5,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -207,6 +222,7 @@ class DataDummy {
             tvShows.add(
                 TvShow(
                     6,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -220,6 +236,7 @@ class DataDummy {
                 TvShow(
                     7,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -231,6 +248,7 @@ class DataDummy {
             tvShows.add(
                 TvShow(
                     8,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
@@ -244,6 +262,7 @@ class DataDummy {
                 TvShow(
                     9,
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",
                     71.0,
@@ -255,6 +274,7 @@ class DataDummy {
             tvShows.add(
                 TvShow(
                     10,
+                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
                     "Peninsula",
                     "12 2 2020",

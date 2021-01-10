@@ -12,6 +12,8 @@ import me.farhan.moviecataloq.core.BuildConfig
 import me.farhan.moviecataloq.core.R
 import me.farhan.moviecataloq.core.databinding.ItemMovieBinding
 import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.util.hide
+import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.interfaces.MovieClickListener
 
 /**
@@ -37,6 +39,13 @@ class MovieAdapter :
     private val binding = ItemMovieBinding.bind(view)
     fun bind(listener: MovieClickListener?, movie: Movie) {
       view.apply {
+        binding.apply {
+          if (movie.isFavorite == 1) {
+            imageViewIsMovieFavoriteItem.show()
+          } else {
+            imageViewIsMovieFavoriteItem.hide()
+          }
+        }
         binding.textViewTitleMovieItem.text = movie.title
         binding.textViewRatingMovieItem.text =
           String.format(
@@ -45,7 +54,7 @@ class MovieAdapter :
             movie.voteCount
           )
         Glide.with(view)
-          .load(BuildConfig.IMAGE_URL + movie.cover)
+          .load(BuildConfig.IMAGE_URL + movie.posterPath)
           .apply(
             RequestOptions
               .placeholderOf(R.drawable.ic_baseline_refresh_24)

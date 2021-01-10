@@ -12,6 +12,8 @@ import me.farhan.moviecataloq.core.BuildConfig
 import me.farhan.moviecataloq.core.R
 import me.farhan.moviecataloq.core.databinding.ItemTvShowBinding
 import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.util.hide
+import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
 
 /**
@@ -39,6 +41,13 @@ class TvShowAdapter :
     private val binding = ItemTvShowBinding.bind(view)
     fun bind(listener: TvShowClickListener?, tvShow: TvShow) {
       view.apply {
+        binding.apply {
+          if (tvShow.isFavorite == 1) {
+            imageViewIsTvShowFavoriteItem.show()
+          } else {
+            imageViewIsTvShowFavoriteItem.hide()
+          }
+        }
         binding.textViewNameTvShowItem.text = tvShow.name
         binding.textViewRatingTvShowItem.text =
           String.format(
@@ -47,7 +56,7 @@ class TvShowAdapter :
             tvShow.voteCount
           )
         Glide.with(view)
-          .load(BuildConfig.IMAGE_URL + tvShow.cover)
+          .load(BuildConfig.IMAGE_URL + tvShow.posterPath)
           .apply(
             RequestOptions
               .placeholderOf(R.drawable.ic_baseline_refresh_24)

@@ -1,7 +1,6 @@
 package me.farhan.moviecataloq.core.data.source.remote.response
 
 import android.os.Parcelable
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -13,8 +12,10 @@ import kotlinx.android.parcel.Parcelize
 data class TvShowResponse(
   @field:SerializedName("id")
   val id: Long,
+  @field:SerializedName("backdrop_path")
+  val backdropPath: String,
   @field:SerializedName("poster_path")
-  val cover: String,
+  val posterPath: String,
   @field:SerializedName("name")
   val name: String,
   @field:SerializedName("first_air_date")

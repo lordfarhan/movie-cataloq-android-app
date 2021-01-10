@@ -94,6 +94,15 @@
         android:scaleType="centerCrop"
         android:src="@color/design_default_color_primary" />
 
+      <ImageView
+        android:id="@+id/imageView_isMovieFavoriteItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_space"
+        android:contentDescription="@string/favorite_movie"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:tint="@color/colorAlizarin" />
+
     </androidx.cardview.widget.CardView>
 
   </androidx.constraintlayout.widget.ConstraintLayout>

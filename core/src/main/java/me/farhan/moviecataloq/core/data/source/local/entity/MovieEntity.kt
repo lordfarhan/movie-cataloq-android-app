@@ -16,8 +16,10 @@ data class MovieEntity(
   @PrimaryKey
   @SerializedName("id")
   var id: Long,
+  @SerializedName("backdrop_path")
+  val backdropPath: String,
   @SerializedName("poster_path")
-  var cover: String,
+  val posterPath: String,
   @SerializedName("title")
   var title: String,
   @SerializedName("release_date")
