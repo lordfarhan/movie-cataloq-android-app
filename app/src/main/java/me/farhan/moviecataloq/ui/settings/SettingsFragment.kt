@@ -3,9 +3,9 @@ package me.farhan.moviecataloq.ui.settings
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.BuildCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import me.farhan.moviecataloq.App
 import me.farhan.moviecataloq.R
 
 /**
@@ -26,16 +26,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
       when (newValue) {
         getString(R.string.pref_night_on) -> {
           updateTheme(AppCompatDelegate.MODE_NIGHT_YES)
+          App.getInstance().setIsNightModeEnabled(AppCompatDelegate.MODE_NIGHT_YES)
         }
         getString(R.string.pref_night_off) -> {
           updateTheme(AppCompatDelegate.MODE_NIGHT_NO)
+          App.getInstance().setIsNightModeEnabled(AppCompatDelegate.MODE_NIGHT_NO)
         }
         else -> {
-          if (BuildCompat.isAtLeastR()) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-          } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
-          }
+          updateTheme(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+          App.getInstance().setIsNightModeEnabled(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
       }
       true
