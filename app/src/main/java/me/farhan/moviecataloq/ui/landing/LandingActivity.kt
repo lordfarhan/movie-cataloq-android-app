@@ -7,7 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.tabs.TabLayoutMediator
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.databinding.ActivityLandingBinding
 import me.farhan.moviecataloq.ui.settings.SettingsActivity
@@ -25,19 +28,38 @@ class LandingActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = DataBindingUtil.setContentView(this, R.layout.activity_landing)
 
+//    setSupportActionBar(binding.toolbarLanding)
+//    supportActionBar?.title = ""
+
+//    adapter = LandingAdapter(this)
+//    binding.viewPager2Landing.adapter = adapter
+//    binding.viewPager2Landing.offscreenPageLimit = 2
+//
+//    TabLayoutMediator(binding.tabLayoutLanding, binding.viewPager2Landing) { tab, position ->
+//      when (position) {
+//        0 -> tab.text = resources.getString(R.string.movies)
+//        1 -> tab.text = resources.getString(R.string.tv_shows)
+//      }
+//    }.attach()
+
+    setupViews()
+  }
+
+  private fun setupViews() {
+    val navHostFragment = supportFragmentManager
+      .findFragmentById(R.id.fragmentContainerView_landing) as NavHostFragment
+    val navController = navHostFragment.navController
+    binding.bottomNavigationViewLanding.setupWithNavController(navController)
+
     setSupportActionBar(binding.toolbarLanding)
-    supportActionBar?.title = ""
 
-    adapter = LandingAdapter(this)
-    binding.viewPager2Landing.adapter = adapter
-    binding.viewPager2Landing.offscreenPageLimit = 2
-
-    TabLayoutMediator(binding.tabLayoutLanding, binding.viewPager2Landing) { tab, position ->
-      when (position) {
-        0 -> tab.text = resources.getString(R.string.movies)
-        1 -> tab.text = resources.getString(R.string.tv_shows)
-      }
-    }.attach()
+    val appBarConfiguration = AppBarConfiguration(
+      topLevelDestinationIds = setOf(
+        R.id.movieFragment,
+        R.id.tvShowFragment
+      )
+    )
+    setupActionBarWithNavController(navController, appBarConfiguration)
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {

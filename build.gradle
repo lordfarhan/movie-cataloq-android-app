@@ -20,6 +20,7 @@ buildscript {
         okhttpVersion = '4.9.0'
         mockitoVersion = '2.27.0'
         mockitoKotlinVersion = '2.2.0'
+        navVersion = "2.1.0"
         idleResourceVersion = '3.3.0'
         archTestingVersion = '2.1.0'
         roomVersion = '2.2.6'
