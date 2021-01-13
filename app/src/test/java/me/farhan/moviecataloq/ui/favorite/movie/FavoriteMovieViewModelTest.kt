@@ -55,7 +55,7 @@ class FavoriteMovieViewModelTest {
     verify(repository).getFavoriteMovies()
 
     assertNotNull(entities)
-    assertEquals(10, entities?.size)
+    assertEquals(10, entities.size)
 
     viewModel.getFavoriteMovies().observeForever(observer)
     verify(observer).onChanged(dummyMovies)

@@ -42,7 +42,7 @@ class MovieCataloqRepositoryTest {
     val entities = Resource.success(mockPagedList(DataDummy.getMovies()))
     verify(local).getMovies()
     assertNotNull(entities.data)
-    assertEquals(10, entities.data?.size)
+    assertEquals(10, entities.data.size)
   }
 
   @Test
@@ -54,7 +54,7 @@ class MovieCataloqRepositoryTest {
     val entities = Resource.success(mockPagedList(DataDummy.getTvShows()))
     verify(local).getTvShows()
     assertNotNull(entities.data)
-    assertEquals(10, entities.data?.size)
+    assertEquals(10, entities.data.size)
   }
 
 }

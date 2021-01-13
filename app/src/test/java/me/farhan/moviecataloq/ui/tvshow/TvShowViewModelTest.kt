@@ -47,7 +47,7 @@ class TvShowViewModelTest {
   @Test
   fun getTvShows() {
     val dummyTvShows = Resource.success(pagedList)
-    `when`(dummyTvShows.data?.size).thenReturn(10)
+    `when`(dummyTvShows.data.size).thenReturn(10)
 
     val tvShows = MutableLiveData<Resource<PagedList<TvShow>>>()
     tvShows.value = dummyTvShows

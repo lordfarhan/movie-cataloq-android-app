@@ -55,7 +55,7 @@ class FavoriteTvShowViewModelTest {
     verify(repository).getFavoriteTvShows()
 
     assertNotNull(entities)
-    assertEquals(10, entities?.size)
+    assertEquals(10, entities.size)
 
     viewModel.getFavoriteTvShows().observeForever(observer)
     verify(observer).onChanged(dummyTvShows)

@@ -47,7 +47,7 @@ class MovieViewModelTest {
   @Test
   fun getMovies() {
     val dummyMovies = Resource.success(pagedList)
-    `when`(dummyMovies.data?.size).thenReturn(10)
+    `when`(dummyMovies.data.size).thenReturn(10)
 
     val movies = MutableLiveData<Resource<PagedList<Movie>>>()
     movies.value = dummyMovies
