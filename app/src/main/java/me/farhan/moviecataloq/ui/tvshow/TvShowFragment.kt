@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.core.data.Resource
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.ui.tvshow.TvShowAdapter
 import me.farhan.moviecataloq.core.util.hide
@@ -16,7 +17,6 @@ import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.FragmentTvShowBinding
 import me.farhan.moviecataloq.interfaces.TvShowClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
-import me.farhan.moviecataloq.core.data.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -26,8 +26,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class TvShowFragment : Fragment(), TvShowClickListener {
 
   private val viewModel: TvShowViewModel by viewModel()
-  private lateinit var adapter: TvShowAdapter
-  private lateinit var binding: FragmentTvShowBinding
+  private var _binding: FragmentTvShowBinding? = null
+  private val binding get() = _binding!!
 
   companion object {
     fun newInstance(): TvShowFragment {
@@ -44,7 +44,7 @@ class TvShowFragment : Fragment(), TvShowClickListener {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentTvShowBinding.inflate(inflater, container, false)
+    _binding = FragmentTvShowBinding.inflate(inflater, container, false)
     context ?: return binding.root
     return binding.root
   }
@@ -52,15 +52,15 @@ class TvShowFragment : Fragment(), TvShowClickListener {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     if (activity != null) {
-      adapter = TvShowAdapter()
+      val adapter = TvShowAdapter()
       adapter.listener = this
       recyclerView_tvShow.adapter = adapter
 
-      subscribeInterface()
+      subscribeInterface(adapter)
     }
   }
 
-  private fun subscribeInterface() {
+  private fun subscribeInterface(adapter: TvShowAdapter) {
     progressBar_tvShow.show()
     viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
       if (tvShows != null) {
@@ -91,5 +91,10 @@ class TvShowFragment : Fragment(), TvShowClickListener {
     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
     intent.putExtra(DetailActivity.TV_SHOW, tvShow)
     startActivity(intent)
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
   }
 }

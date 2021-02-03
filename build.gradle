@@ -12,6 +12,7 @@ buildscript {
         kenburnsVersion = '1.0.7'
         koinVersion = "2.1.6"
         kotlinCoroutinesVersion = "1.3.9"
+        leakCanaryVersion = "2.4"
         lifecycleVersion = "2.2.0"
         espressoVersion = '3.3.0'
         archLifecycleVersion = '2.2.0'

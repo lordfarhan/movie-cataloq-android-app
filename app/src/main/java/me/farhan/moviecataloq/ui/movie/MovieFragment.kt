@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import me.farhan.moviecataloq.R
+import me.farhan.moviecataloq.core.data.Resource
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.ui.movie.MovieAdapter
 import me.farhan.moviecataloq.core.util.hide
@@ -15,7 +16,6 @@ import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.FragmentMovieBinding
 import me.farhan.moviecataloq.interfaces.MovieClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
-import me.farhan.moviecataloq.core.data.Resource
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -25,8 +25,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MovieFragment : Fragment(), MovieClickListener {
 
   private val viewModel: MovieViewModel by viewModel()
-  private lateinit var adapter: MovieAdapter
-  private lateinit var binding: FragmentMovieBinding
+  private var _binding: FragmentMovieBinding? = null
+  private val binding get() = _binding!!
 
   companion object {
     fun newInstance(): MovieFragment {
@@ -43,7 +43,7 @@ class MovieFragment : Fragment(), MovieClickListener {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentMovieBinding.inflate(inflater, container, false)
+    _binding = FragmentMovieBinding.inflate(inflater, container, false)
     context ?: return binding.root
     return binding.root
   }
@@ -51,15 +51,15 @@ class MovieFragment : Fragment(), MovieClickListener {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     if (activity != null) {
-      adapter = MovieAdapter()
+      val adapter = MovieAdapter()
       adapter.listener = this
       binding.recyclerViewMovie.adapter = adapter
 
-      subscribeInterface()
+      subscribeInterface(adapter)
     }
   }
 
-  private fun subscribeInterface() {
+  private fun subscribeInterface(adapter: MovieAdapter) {
     binding.progressBarMovie.show()
     viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
       if (movies != null) {
@@ -90,5 +90,10 @@ class MovieFragment : Fragment(), MovieClickListener {
     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
     intent.putExtra(DetailActivity.MOVIE, movie)
     startActivity(intent)
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
   }
 }

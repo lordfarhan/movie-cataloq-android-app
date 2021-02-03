@@ -21,26 +21,11 @@ import me.farhan.moviecataloq.ui.settings.SettingsActivity
  */
 class LandingActivity : AppCompatActivity() {
 
-  private lateinit var adapter: LandingAdapter
   private lateinit var binding: ActivityLandingBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = DataBindingUtil.setContentView(this, R.layout.activity_landing)
-
-//    setSupportActionBar(binding.toolbarLanding)
-//    supportActionBar?.title = ""
-
-//    adapter = LandingAdapter(this)
-//    binding.viewPager2Landing.adapter = adapter
-//    binding.viewPager2Landing.offscreenPageLimit = 2
-//
-//    TabLayoutMediator(binding.tabLayoutLanding, binding.viewPager2Landing) { tab, position ->
-//      when (position) {
-//        0 -> tab.text = resources.getString(R.string.movies)
-//        1 -> tab.text = resources.getString(R.string.tv_shows)
-//      }
-//    }.attach()
 
     setupViews()
   }
@@ -80,6 +65,10 @@ class LandingActivity : AppCompatActivity() {
       }
       else -> super.onOptionsItemSelected(item)
     }
+  }
+
+  override fun onBackPressed() {
+    finishAfterTransition()
   }
 
 }
