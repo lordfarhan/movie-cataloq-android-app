@@ -9,6 +9,8 @@ import me.farhan.moviecataloq.core.data.source.remote.network.ApiService
 import me.farhan.moviecataloq.core.domain.repository.IRepository
 import me.farhan.moviecataloq.core.util.AppExecutors
 import me.farhan.moviecataloq.core.util.ENDPOINT
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -24,10 +26,14 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
   factory { get<AppDatabase>().dao() }
   single {
+    val passphrase: ByteArray = SQLiteDatabase.getBytes("farhan".toCharArray())
+    val factory = SupportFactory(passphrase)
     Room.databaseBuilder(
       androidContext(),
       AppDatabase::class.java, "movie_cataloq_db"
-    ).fallbackToDestructiveMigration().build()
+    ).fallbackToDestructiveMigration()
+      .openHelperFactory(factory)
+      .build()
   }
 }
 
