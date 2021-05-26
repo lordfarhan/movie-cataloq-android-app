@@ -15,5 +15,5 @@ import me.farhan.moviecataloq.core.data.source.local.entity.TvShowEntity
   exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-  abstract fun dao(): MovieCataloqDao
+  abstract fun dao(): AppDao
 }

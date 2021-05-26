@@ -3,13 +3,13 @@ package me.farhan.moviecataloq.core.data.source.local
 import kotlinx.coroutines.flow.Flow
 import me.farhan.moviecataloq.core.data.source.local.entity.MovieEntity
 import me.farhan.moviecataloq.core.data.source.local.entity.TvShowEntity
-import me.farhan.moviecataloq.core.data.source.local.room.MovieCataloqDao
+import me.farhan.moviecataloq.core.data.source.local.room.AppDao
 
 /**
  * @author farhan
  * created at at 11:26 on 28/11/20.
  */
-class LocalDataSource constructor(private val dao: MovieCataloqDao) {
+class LocalDataSource constructor(private val dao: AppDao) {
   fun getMovies(): Flow<List<MovieEntity>> = dao.getMovies()
 
   fun getMovieDetail(id: Long): Flow<MovieEntity> = dao.getMovieDetail(id)

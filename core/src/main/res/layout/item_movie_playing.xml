@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView_cardMovieItem"
+    android:layout_width="240dp"
+    android:layout_height="120dp"
+    android:layout_marginStart="@dimen/medium_space"
+    android:layout_marginTop="@dimen/medium_space"
+    android:layout_marginEnd="@dimen/medium_space"
+    android:layout_marginBottom="@dimen/medium_space"
+    app:cardCornerRadius="@dimen/default_card_corner_radius"
+    app:cardElevation="@dimen/default_card_elevation">
+
+    <ImageView
+        android:id="@+id/imageView_coverMovieItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/movie_cover"
+        android:scaleType="centerCrop"
+        android:src="@color/primary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:background="@color/black"
+        android:contentDescription="@string/movie_cover"
+        android:scaleType="centerCrop" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/small_space"
+            android:paddingBottom="@dimen/small_space"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="@dimen/medium_space"
+                android:contentDescription="@string/movie_rating"
+                android:src="@drawable/ic_baseline_star_24"
+                app:tint="@color/colorSunFlower" />
+
+            <TextView
+                android:id="@+id/textView_ratingMovieItem"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/medium_space"
+                android:gravity="center"
+                android:textColor="@color/white"
+                tools:text="6.4" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_titleMovieItem"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_space"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/movie_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

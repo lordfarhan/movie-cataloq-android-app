@@ -3,12 +3,10 @@ package me.farhan.moviecataloq.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.util.SPLASH_SCREEN_DURATION
 import me.farhan.moviecataloq.databinding.ActivitySplashScreenBinding
 import me.farhan.moviecataloq.ui.landing.LandingActivity
@@ -20,7 +18,8 @@ class SplashScreenActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_splash_screen)
+    binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     activityScope.launch {
       delay(SPLASH_SCREEN_DURATION)

@@ -1,11 +1,13 @@
 package me.farhan.moviecataloq.ui.detail
 
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.appbar.AppBarLayout
 import me.farhan.moviecataloq.BuildConfig
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.data.Resource
@@ -28,33 +30,76 @@ class DetailActivity : AppCompatActivity() {
   }
 
   private lateinit var binding: ActivityDetailBinding
-  private lateinit var mMovie: Movie
-  private lateinit var mTvShow: TvShow
+  private lateinit var movie: Movie
+  private lateinit var tvShow: TvShow
 
   private val viewModel: DetailViewModel by viewModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
+    binding = ActivityDetailBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    binding.imageViewActionBack.setOnClickListener { onBackPressed() }
+    setSupportActionBar(binding.toolbarDetail)
+    supportActionBar?.setDisplayShowHomeEnabled(true)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    supportActionBar?.title = " "
 
     when {
       intent.hasExtra(MOVIE) -> {
-        mMovie = intent.getParcelableExtra(MOVIE) as Movie
-        viewModel.setMovieId(mMovie.id)
-        supportActionBar?.setTitle(R.string.movie)
+        movie = intent.getParcelableExtra<Movie>(MOVIE) as Movie
+        viewModel.setMovieId(movie.id)
+        setCollapsingToolbarLayout(movie.title)
         subscribeMovieDetail()
       }
       intent.hasExtra(TV_SHOW) -> {
-        mTvShow = intent.getParcelableExtra(TV_SHOW) as TvShow
-        viewModel.setTvShowId(mTvShow.id)
-        supportActionBar?.setTitle(R.string.tv_show)
+        tvShow = intent.getParcelableExtra<TvShow>(TV_SHOW) as TvShow
+        viewModel.setTvShowId(tvShow.id)
+        setCollapsingToolbarLayout(tvShow.name)
         subscribeTvShowDetail()
       }
       else -> {
         finish()
       }
+    }
+  }
+
+  private fun setCollapsingToolbarLayout(title: String) {
+    var isShow = true
+    var scrollRange = -1
+    binding.apply {
+      collapsingToolbarLayoutDetail.collapsedTitleGravity = Gravity.START
+      collapsingToolbarLayoutDetail.setCollapsedTitleTextColor(
+        ContextCompat.getColor(
+          this@DetailActivity,
+          R.color.white
+        )
+      )
+
+      appBarLayoutDetail.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
+        if (scrollRange == -1) {
+          scrollRange = barLayout?.totalScrollRange!!
+        }
+        if (scrollRange + verticalOffset == 0) {
+          collapsingToolbarLayoutDetail.title = title
+          toolbarDetail.setBackgroundColor(
+            ContextCompat.getColor(
+              this@DetailActivity,
+              R.color.primary
+            )
+          )
+          isShow = true
+        } else if (isShow) {
+          collapsingToolbarLayoutDetail.title = " "
+          toolbarDetail.setBackgroundColor(
+            ContextCompat.getColor(
+              this@DetailActivity,
+              android.R.color.transparent
+            )
+          )
+          isShow = false
+        }
+      })
     }
   }
 
@@ -116,7 +161,14 @@ class DetailActivity : AppCompatActivity() {
                   movie.data?.voteAverage,
                   movie.data?.voteCount
                 )
-              textViewDateTitleDetail.text = resources.getString(R.string.movie_release_date)
+              textViewTitleDetail.text = movie.data?.title
+              textViewTaglineDetail.text = movie.data?.tagline
+              textViewRatingDetail.text =
+                String.format(
+                  "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
+                  movie.data?.voteAverage,
+                  movie.data?.voteCount
+                )
               textViewDateDetail.text = movie.data?.getDate()
               textViewStatusDetail.text = movie.data?.status
               textViewOverviewDetail.text = movie.data?.overview
@@ -172,7 +224,14 @@ class DetailActivity : AppCompatActivity() {
                   tvShow.data?.voteAverage,
                   tvShow.data?.voteCount
                 )
-              textViewDateTitleDetail.text = resources.getString(R.string.tv_show_first_air_date)
+              textViewTitleDetail.text = tvShow.data?.name
+              textViewTaglineDetail.text = tvShow.data?.tagline
+              textViewRatingDetail.text =
+                String.format(
+                  "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
+                  tvShow.data?.voteAverage,
+                  tvShow.data?.voteCount
+                )
               textViewDateDetail.text = tvShow.data?.getDate()
               textViewStatusDetail.text = tvShow.data?.status
               textViewOverviewDetail.text = tvShow.data?.overview

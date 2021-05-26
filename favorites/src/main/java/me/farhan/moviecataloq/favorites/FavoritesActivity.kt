@@ -2,10 +2,9 @@ package me.farhan.moviecataloq.favorites
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import me.farhan.moviecataloq.R
-import me.farhan.moviecataloq.databinding.ActivityFavoritesBinding
+import me.farhan.moviecataloq.favorites.databinding.ActivityFavoritesBinding
 import org.koin.core.context.loadKoinModules
 
 /**
@@ -19,18 +18,19 @@ class FavoritesActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_favorites)
+    binding = ActivityFavoritesBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     loadKoinModules(favoritesModule)
 
-    setSupportActionBar(binding.toolbarFavorite)
+    setSupportActionBar(binding.toolbarFavorites)
     supportActionBar?.title = resources.getString(R.string.favorites)
 
     adapter = FavoritesAdapter(this)
-    binding.viewPager2Favorite.adapter = adapter
-    binding.viewPager2Favorite.offscreenPageLimit = 2
+    binding.viewPager2Favorites.adapter = adapter
+    binding.viewPager2Favorites.offscreenPageLimit = 2
 
-    TabLayoutMediator(binding.tabLayoutFavorite, binding.viewPager2Favorite) { tab, position ->
+    TabLayoutMediator(binding.tabLayoutFavorites, binding.viewPager2Favorites) { tab, position ->
       when (position) {
         0 -> tab.text = resources.getString(R.string.movies)
         1 -> tab.text = resources.getString(R.string.tv_shows)

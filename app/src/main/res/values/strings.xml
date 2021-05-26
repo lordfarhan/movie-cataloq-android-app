@@ -7,11 +7,8 @@
 
   <string name="movie">Movie</string>
   <string name="tv_show">TV Show</string>
-  <string name="favorite_movie">Favorite Movie</string>
-  <string name="favorite_tv_show">Favorite TV Show</string>
 
   <string name="movie_cover">Cover</string>
-  <string name="movie_title">Title</string>
   <string name="movie_rating">Rating</string>
   <string name="movie_release_date">Release Date</string>
   <string name="movie_status">Status</string>
@@ -20,26 +17,11 @@
 
   <string name="tv_show_first_air_date">First Air Date</string>
 
-  <string name="january">January</string>
-  <string name="february">February</string>
-  <string name="march">March</string>
-  <string name="april">April</string>
-  <string name="may">May</string>
-  <string name="june">June</string>
-  <string name="july">July</string>
-  <string name="august">August</string>
-  <string name="september">September</string>
-  <string name="october">October</string>
-  <string name="november">November</string>
-  <string name="december">December</string>
-
   <string name="action_back">Back</string>
   <string name="action_favorite">Add to Favorite</string>
-  <string name="action_settings">Settings</string>
 
   <string name="theme">Theme</string>
   <string name="pref_key_night">key_night_mode</string>
-  <string name="pref_night_title">Night mode</string>
   <string name="pref_night_summary">Select a dark or light theme.</string>
   <string name="pref_night_dialog">Set Night mode</string>
   <string name="pref_night_auto">auto</string>
@@ -50,6 +32,7 @@
   <string name="night_mode_off">Day mode</string>
 
   <string name="dialog_error">Error</string>
-  <string name="dialog_success">Success</string>
-  <string name="title_favorites">Favorites</string>
+  <string name="home">Home</string>
+  <string name="popular_movies">Popular Movies</string>
+  <string name="popular_tv_shows">Popular TV Shows</string>
 </resources>

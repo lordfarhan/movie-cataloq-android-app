@@ -13,7 +13,7 @@ import me.farhan.moviecataloq.core.data.source.local.entity.TvShowEntity
  * created at at 10:58 on 28/11/20.
  */
 @Dao
-interface MovieCataloqDao {
+interface AppDao {
   @Query("SELECT * FROM movies")
   fun getMovies(): Flow<List<MovieEntity>>
 

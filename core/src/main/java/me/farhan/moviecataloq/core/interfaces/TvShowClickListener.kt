@@ -1,4 +1,4 @@
-package me.farhan.moviecataloq.interfaces
+package me.farhan.moviecataloq.core.interfaces
 
 import android.view.View
 import me.farhan.moviecataloq.core.domain.model.TvShow

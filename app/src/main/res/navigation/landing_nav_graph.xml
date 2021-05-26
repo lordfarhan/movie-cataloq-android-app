@@ -2,15 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/landing_nav_graph.xml"
-  app:startDestination="@id/movieFragment">
+  app:startDestination="@id/homeFragment">
+
+  <fragment
+    android:id="@+id/homeFragment"
+    android:name="me.farhan.moviecataloq.ui.home.HomeFragment"
+    android:label="@string/app_name" />
 
   <fragment
     android:id="@+id/movieFragment"
     android:name="me.farhan.moviecataloq.ui.movie.MovieFragment"
-    android:label="MovieFragment" />
+    android:label="@string/movie" />
 
   <fragment
     android:id="@+id/tvShowFragment"
     android:name="me.farhan.moviecataloq.ui.tvshow.TvShowFragment"
-    android:label="TvShowFragment" />
+    android:label="@string/tv_show" />
 </navigation>

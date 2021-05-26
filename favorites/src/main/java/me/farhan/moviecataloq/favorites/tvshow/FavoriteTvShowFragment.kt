@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.interfaces.TvShowClickListener
 import me.farhan.moviecataloq.core.ui.favorites.tvshow.FavoriteTvShowAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
-import me.farhan.moviecataloq.databinding.FragmentFavoriteTvshowBinding
-import me.farhan.moviecataloq.interfaces.TvShowClickListener
+import me.farhan.moviecataloq.favorites.databinding.FragmentFavoriteTvshowBinding
 import me.farhan.moviecataloq.ui.detail.DetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 

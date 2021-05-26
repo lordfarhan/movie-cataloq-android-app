@@ -14,7 +14,7 @@ import me.farhan.moviecataloq.core.databinding.ItemMovieBinding
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
-import me.farhan.moviecataloq.interfaces.MovieClickListener
+import me.farhan.moviecataloq.core.interfaces.MovieClickListener
 
 /**
  * @author farhan

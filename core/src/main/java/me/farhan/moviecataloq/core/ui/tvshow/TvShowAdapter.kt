@@ -1,7 +1,7 @@
 package me.farhan.moviecataloq.core.ui.tvshow
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -14,60 +14,55 @@ import me.farhan.moviecataloq.core.databinding.ItemTvShowBinding
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
-import me.farhan.moviecataloq.interfaces.TvShowClickListener
+import me.farhan.moviecataloq.core.interfaces.TvShowClickListener
 
 /**
  * @author farhan
  * created at at 13:37 on 27/10/2020.
  */
-class TvShowAdapter :
+class TvShowAdapter(private val context: Context) :
   ListAdapter<TvShow, TvShowAdapter.ViewHolder>(DiffCallback()) {
 
   var listener: TvShowClickListener? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-    ViewHolder(
-      LayoutInflater.from(parent.context).inflate(R.layout.item_tv_show, parent, false)
-    )
+    ViewHolder(ItemTvShowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     val tvShow = getItem(position)
     tvShow?.let {
-      holder.bind(listener, it)
+      holder.bind(context, listener, it)
     }
   }
 
-  class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-    private val binding = ItemTvShowBinding.bind(view)
-    fun bind(listener: TvShowClickListener?, tvShow: TvShow) {
-      view.apply {
-        binding.apply {
-          if (tvShow.isFavorite == 1) {
-            imageViewIsTvShowFavoriteItem.show()
-          } else {
-            imageViewIsTvShowFavoriteItem.hide()
-          }
+  class ViewHolder(private val binding: ItemTvShowBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(context: Context, listener: TvShowClickListener?, tvShow: TvShow) {
+      binding.apply {
+        if (tvShow.isFavorite == 1) {
+          imageViewIsTvShowFavoriteItem.show()
+        } else {
+          imageViewIsTvShowFavoriteItem.hide()
         }
-        binding.textViewNameTvShowItem.text = tvShow.name
-        binding.textViewRatingTvShowItem.text =
-          String.format(
-            "%.1f (%d ${resources.getString(R.string.movie_reviewers)})",
-            tvShow.voteAverage,
-            tvShow.voteCount
-          )
-        Glide.with(view)
-          .load(BuildConfig.IMAGE_URL + tvShow.posterPath)
-          .apply(
-            RequestOptions
-              .placeholderOf(R.drawable.ic_baseline_refresh_24)
-              .error(R.drawable.ic_baseline_close_24)
-          )
-          .into(binding.imageViewCoverTvShowItem)
-        binding.textViewReleaseDateTvShowItem.text = tvShow.getYear()
+      }
+      binding.textViewNameTvShowItem.text = tvShow.name
+      binding.textViewRatingTvShowItem.text =
+        String.format(
+          context.resources.getString(R.string.movie_reviewers),
+          tvShow.voteAverage,
+          tvShow.voteCount
+        )
+      Glide.with(binding.root)
+        .load(BuildConfig.IMAGE_URL + tvShow.posterPath)
+        .apply(
+          RequestOptions
+            .placeholderOf(R.drawable.ic_baseline_refresh_24)
+            .error(R.drawable.ic_baseline_close_24)
+        )
+        .into(binding.imageViewCoverTvShowItem)
+      binding.textViewReleaseDateTvShowItem.text = tvShow.getYear()
 
-        binding.constraintLayoutContainerTvShowItem.setOnClickListener {
-          listener?.onItemClicked(view, tvShow)
-        }
+      binding.constraintLayoutContainerTvShowItem.setOnClickListener {
+        listener?.onItemClicked(binding.root, tvShow)
       }
     }
   }

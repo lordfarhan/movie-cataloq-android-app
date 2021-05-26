@@ -14,7 +14,7 @@ import me.farhan.moviecataloq.core.databinding.ItemTvShowBinding
 import me.farhan.moviecataloq.core.domain.model.TvShow
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
-import me.farhan.moviecataloq.interfaces.TvShowClickListener
+import me.farhan.moviecataloq.core.interfaces.TvShowClickListener
 
 /**
  * @author farhan

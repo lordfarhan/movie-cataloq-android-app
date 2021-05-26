@@ -17,7 +17,7 @@ import me.farhan.moviecataloq.core.util.DataMapper
  * @author farhan
  * created at at 22:32 on 14/11/20.
  */
-class MovieCataloqRepository constructor(
+class AppRepository constructor(
   private val remoteDataSource: RemoteDataSource,
   private val localDataSource: LocalDataSource,
   private val appExecutors: AppExecutors

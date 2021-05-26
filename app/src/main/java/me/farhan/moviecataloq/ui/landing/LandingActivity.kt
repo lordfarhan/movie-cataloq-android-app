@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -25,7 +24,8 @@ class LandingActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_landing)
+    binding = ActivityLandingBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     setupViews()
   }
@@ -40,6 +40,7 @@ class LandingActivity : AppCompatActivity() {
 
     val appBarConfiguration = AppBarConfiguration(
       topLevelDestinationIds = setOf(
+        R.id.homeFragment,
         R.id.movieFragment,
         R.id.tvShowFragment
       )
@@ -65,10 +66,6 @@ class LandingActivity : AppCompatActivity() {
       }
       else -> super.onOptionsItemSelected(item)
     }
-  }
-
-  override fun onBackPressed() {
-    finishAfterTransition()
   }
 
 }

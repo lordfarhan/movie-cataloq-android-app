@@ -1,7 +1,7 @@
 package me.farhan.moviecataloq.core.di
 
 import androidx.room.Room
-import me.farhan.moviecataloq.core.data.MovieCataloqRepository
+import me.farhan.moviecataloq.core.data.AppRepository
 import me.farhan.moviecataloq.core.data.source.local.LocalDataSource
 import me.farhan.moviecataloq.core.data.source.local.room.AppDatabase
 import me.farhan.moviecataloq.core.data.source.remote.RemoteDataSource
@@ -69,7 +69,7 @@ val repositoryModule = module {
   single { RemoteDataSource(get()) }
   factory { AppExecutors() }
   single<IRepository> {
-    MovieCataloqRepository(
+    AppRepository(
       get(),
       get(),
       get()

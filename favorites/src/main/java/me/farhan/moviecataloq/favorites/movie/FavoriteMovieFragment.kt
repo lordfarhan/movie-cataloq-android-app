@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.interfaces.MovieClickListener
 import me.farhan.moviecataloq.core.ui.favorites.movie.FavoriteMovieAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
-import me.farhan.moviecataloq.databinding.FragmentFavoriteMovieBinding
-import me.farhan.moviecataloq.interfaces.MovieClickListener
+import me.farhan.moviecataloq.favorites.databinding.FragmentFavoriteMovieBinding
 import me.farhan.moviecataloq.ui.detail.DetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 

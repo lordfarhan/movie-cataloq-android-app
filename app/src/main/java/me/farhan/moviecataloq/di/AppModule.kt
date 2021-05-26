@@ -3,6 +3,7 @@ package me.farhan.moviecataloq.di
 import me.farhan.moviecataloq.core.domain.usecase.Interactor
 import me.farhan.moviecataloq.core.domain.usecase.UseCase
 import me.farhan.moviecataloq.ui.detail.DetailViewModel
+import me.farhan.moviecataloq.ui.home.HomeViewModel
 import me.farhan.moviecataloq.ui.movie.MovieViewModel
 import me.farhan.moviecataloq.ui.tvshow.TvShowViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -17,6 +18,7 @@ val useCaseModule = module {
 }
 
 val viewModelModule = module {
+  viewModel { HomeViewModel(get()) }
   viewModel { MovieViewModel(get()) }
   viewModel { TvShowViewModel(get()) }
   viewModel { DetailViewModel(get()) }

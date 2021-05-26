@@ -2,7 +2,6 @@ package me.farhan.moviecataloq.ui.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.databinding.ActivitySettingsBinding
 
@@ -16,7 +15,8 @@ class SettingsActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_settings)
+    binding = ActivitySettingsBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     setSupportActionBar(binding.toolbarSettings)
     supportActionBar?.title = resources.getString(R.string.settings)
