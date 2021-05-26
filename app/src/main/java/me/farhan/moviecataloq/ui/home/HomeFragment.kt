@@ -12,13 +12,13 @@ import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.data.Resource
 import me.farhan.moviecataloq.core.domain.model.Movie
 import me.farhan.moviecataloq.core.domain.model.TvShow
+import me.farhan.moviecataloq.core.interfaces.MovieClickListener
+import me.farhan.moviecataloq.core.interfaces.TvShowClickListener
 import me.farhan.moviecataloq.core.ui.home.HomeMovieAdapter
 import me.farhan.moviecataloq.core.ui.home.HomeTvShowAdapter
 import me.farhan.moviecataloq.core.util.invisible
 import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.FragmentHomeBinding
-import me.farhan.moviecataloq.core.interfaces.MovieClickListener
-import me.farhan.moviecataloq.core.interfaces.TvShowClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
 import me.farhan.moviecataloq.util.RecyclerViewItemDecorator
 import org.koin.android.viewmodel.ext.android.viewModel

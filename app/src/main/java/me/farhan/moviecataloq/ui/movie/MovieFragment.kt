@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import me.farhan.moviecataloq.R
 import me.farhan.moviecataloq.core.data.Resource
 import me.farhan.moviecataloq.core.domain.model.Movie
+import me.farhan.moviecataloq.core.interfaces.MovieClickListener
 import me.farhan.moviecataloq.core.ui.movie.MovieAdapter
 import me.farhan.moviecataloq.core.util.hide
 import me.farhan.moviecataloq.core.util.show
 import me.farhan.moviecataloq.databinding.FragmentMovieBinding
-import me.farhan.moviecataloq.core.interfaces.MovieClickListener
 import me.farhan.moviecataloq.ui.detail.DetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 

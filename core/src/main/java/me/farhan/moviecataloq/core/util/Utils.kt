@@ -1,6 +1,5 @@
 package me.farhan.moviecataloq.core.util
 
-import android.content.res.Resources
 import me.farhan.moviecataloq.core.R
 
 
