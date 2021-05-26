@@ -26,14 +26,15 @@ class MovieFragment : Fragment(), MovieClickListener {
 
   private val viewModel: MovieViewModel by viewModel()
   private lateinit var adapter: MovieAdapter
-  private lateinit var binding: FragmentMovieBinding
+  private var _binding: FragmentMovieBinding? = null
+  private val binding get() = _binding!!
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
+    _binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
     return binding.root
   }
 
@@ -79,5 +80,10 @@ class MovieFragment : Fragment(), MovieClickListener {
     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
     intent.putExtra(DetailActivity.MOVIE, movie)
     startActivity(intent)
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    _binding = null
   }
 }

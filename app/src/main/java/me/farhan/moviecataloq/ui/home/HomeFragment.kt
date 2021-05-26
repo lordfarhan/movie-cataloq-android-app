@@ -32,14 +32,15 @@ class HomeFragment : Fragment(), MovieClickListener, TvShowClickListener {
   private val viewModel: HomeViewModel by viewModel()
   private lateinit var movieAdapter: HomeMovieAdapter
   private lateinit var tvShowAdapter: HomeTvShowAdapter
-  private lateinit var binding: FragmentHomeBinding
+  private var _binding: FragmentHomeBinding? = null
+  private val binding get() = _binding!!
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+    _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
     return binding.root
   }
 
@@ -123,5 +124,10 @@ class HomeFragment : Fragment(), MovieClickListener, TvShowClickListener {
     val intent = Intent(requireContext(), DetailActivity::class.java)
     intent.putExtra(DetailActivity.TV_SHOW, tvShow)
     requireContext().startActivity(intent)
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    _binding = null
   }
 }

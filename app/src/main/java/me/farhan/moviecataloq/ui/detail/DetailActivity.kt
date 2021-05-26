@@ -250,4 +250,23 @@ class DetailActivity : AppCompatActivity() {
       }
     })
   }
+
+  override fun onBackPressed() {
+    if (isTaskRoot
+      && supportFragmentManager.primaryNavigationFragment
+        ?.childFragmentManager?.backStackEntryCount == 0
+      && supportFragmentManager.backStackEntryCount == 0
+    ) {
+      finishAfterTransition()
+    } else {
+      super.onBackPressed()
+    }
+  }
+
+  override fun onDestroy() {
+    if (isTaskRoot) {
+      finishAfterTransition()
+    }
+    super.onDestroy()
+  }
 }

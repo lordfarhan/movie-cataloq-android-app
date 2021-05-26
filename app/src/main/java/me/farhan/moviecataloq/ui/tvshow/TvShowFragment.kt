@@ -26,14 +26,15 @@ class TvShowFragment : Fragment(), TvShowClickListener {
 
   private val viewModel: TvShowViewModel by viewModel()
   private lateinit var adapter: TvShowAdapter
-  private lateinit var binding: FragmentTvShowBinding
+  private var _binding: FragmentTvShowBinding? = null
+  private val binding get() = _binding!!
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentTvShowBinding.inflate(inflater, container, false)
+    _binding = FragmentTvShowBinding.inflate(inflater, container, false)
     return binding.root
   }
 
@@ -79,5 +80,10 @@ class TvShowFragment : Fragment(), TvShowClickListener {
     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
     intent.putExtra(DetailActivity.TV_SHOW, tvShow)
     startActivity(intent)
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    _binding = null
   }
 }
