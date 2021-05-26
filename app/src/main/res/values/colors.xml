@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">@color/colorAlizarin</color>
-    <color name="secondary">@color/colorPomegranate</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+  <color name="primary">@color/colorAlizarin</color>
+  <color name="secondary">@color/colorPomegranate</color>
+  <color name="black">#FF000000</color>
+  <color name="white">#FFFFFFFF</color>
 
-    <!--  Flat Color Palette-->
-  <!--  <color name="colorBelizeHole">#03A9F4</color>-->
+  <!--  Flat Color Palette-->
   <color name="colorSunFlower">#f1c40f</color>
   <color name="colorAlizarin">#e74c3c</color>
   <color name="colorPomegranate">#c0392b</color>
