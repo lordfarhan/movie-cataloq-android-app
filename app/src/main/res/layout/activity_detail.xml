@@ -174,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/medium_space"
-        app:cardBackgroundColor="@color/colorEmerald"
+        app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="@dimen/default_space"
         app:layout_constraintBottom_toBottomOf="@id/cardView_dateDetail"
         app:layout_constraintStart_toEndOf="@id/cardView_dateDetail"

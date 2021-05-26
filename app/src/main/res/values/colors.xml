@@ -6,7 +6,6 @@
   <color name="white">#FFFFFFFF</color>
 
   <!--  Flat Color Palette-->
-  <color name="colorSunFlower">#f1c40f</color>
   <color name="colorAlizarin">#e74c3c</color>
   <color name="colorPomegranate">#c0392b</color>
 </resources>
